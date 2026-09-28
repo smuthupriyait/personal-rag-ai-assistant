@@ -1,0 +1,25 @@
+# NordicTech IT Support Policy
+
+## Reporting IT Issues
+
+Employees should report IT problems through the company's internal support portal.
+
+When submitting a support request, employees should provide a short description of the problem and include screenshots or error messages when available.
+
+## Priority Levels
+
+Critical issues affecting many employees should be marked as high priority.
+
+Issues affecting only one employee and having a temporary workaround should normally be marked as normal priority.
+
+## Password Problems
+
+Employees who cannot access their account because of a forgotten password should use the company's password reset process.
+
+Employees should never share their password with IT support staff.
+
+## Hardware Problems
+
+Hardware problems such as a damaged laptop, keyboard, mouse, or monitor should be reported through the IT support portal.
+
+The IT support team may ask the employee to bring the equipment to the IT department for inspection.
