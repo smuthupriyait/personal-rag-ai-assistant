@@ -3,7 +3,7 @@ import logging
 from sentence_transformers import SentenceTransformer
 from ollama import chat
 
-from src.config import DISTANCE_THRESHOLD
+from src.config import DISTANCE_THRESHOLD, OLLAMA_MODEL
 from src.logging_config import setup_logging
 from src.retrieval.search import load_vector_store, search
 
@@ -17,7 +17,7 @@ def prepare_context(retrieved_chunks):
 def generate_answer(question, context):
     try:
         response = chat(
-            model="qwen2.5:1.5b",
+            model=OLLAMA_MODEL,
             messages=[
                 {
                     "role": "user",
