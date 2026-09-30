@@ -1,11 +1,14 @@
 from pathlib import Path
 
 
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+DOCUMENTS_PATH = PROJECT_ROOT / "data" / "documents"
+
+
 def load_documents():
-    documents_path = Path("data/documents")
     documents = []
 
-    for file_path in documents_path.glob("*.txt"):
+    for file_path in DOCUMENTS_PATH.glob("*.txt"):
         content = file_path.read_text(encoding="utf-8")
 
         documents.append({

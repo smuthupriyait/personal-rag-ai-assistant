@@ -1,11 +1,16 @@
-import faiss
-import numpy as np
+from pathlib import Path
 import pickle
 
+import faiss
+import numpy as np
 from sentence_transformers import SentenceTransformer
 
 from src.ingestion.load_documents import load_documents
 from src.ingestion.chunk_documents import chunk_documents
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+VECTOR_STORE_PATH = PROJECT_ROOT / "vector_store"
 
 
 def create_vector_store(chunks, model):
@@ -30,13 +35,18 @@ if __name__ == "__main__":
 
     index = create_vector_store(chunks, model)
 
-    faiss.write_index(index, "vector_store/index.faiss")
+    VECTOR_STORE_PATH.mkdir(parents=True, exist_ok=True)
 
-    with open("vector_store/chunks.pkl", "wb") as file:
+    faiss.write_index(
+        index,
+       str(VECTOR_STORE_PATH / "index.faiss") 
+    )
+
+    with open(VECTOR_STORE_PATH / "chunks.pkl", "wb") as file:
         pickle.dump(chunks, file)
 
     print("FAISS vector store created successfully.")
     print("Number of vectors:", index.ntotal)
     print("Vector dimension:", index.d)
-    print("Index saved to: vector_store/index.faiss")
-    print("Chunks saved to: vector_store/chunks.pkl")
+    print("Index saved to:", VECTOR_STORE_PATH / "index.faiss")
+    print("Chunks saved to:", VECTOR_STORE_PATH / "chunks.pkl")

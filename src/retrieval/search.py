@@ -1,3 +1,4 @@
+from pathlib import Path
 import pickle
 
 import faiss
@@ -5,10 +6,16 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 
 
-def load_vector_store():
-    index = faiss.read_index("vector_store/index.faiss")
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+VECTOR_STORE_PATH = PROJECT_ROOT / "vector_store"
 
-    with open("vector_store/chunks.pkl", "rb") as file:
+
+def load_vector_store():
+    index = faiss.read_index(
+        str(VECTOR_STORE_PATH / "index.faiss")
+    )
+
+    with open(VECTOR_STORE_PATH / "chunks.pkl", "rb") as file:
         chunks = pickle.load(file)
 
     return index, chunks
@@ -37,7 +44,6 @@ def search(query, model, index, chunks, top_k=3, distance_threshold=None):
         })
 
     return results
-
 
 
 if __name__ == "__main__":
