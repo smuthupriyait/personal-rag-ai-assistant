@@ -4,7 +4,7 @@ import pickle
 import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
-
+from src.config import EMBEDDING_MODEL
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 VECTOR_STORE_PATH = PROJECT_ROOT / "vector_store"
@@ -47,7 +47,7 @@ def search(query, model, index, chunks, top_k=3, distance_threshold=None):
 
 
 if __name__ == "__main__":
-    model = SentenceTransformer("all-MiniLM-L6-v2")
+    model = SentenceTransformer(EMBEDDING_MODEL)
 
     index, chunks = load_vector_store()
 

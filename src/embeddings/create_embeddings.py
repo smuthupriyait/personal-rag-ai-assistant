@@ -1,5 +1,6 @@
 from sentence_transformers import SentenceTransformer
 
+from src.config import EMBEDDING_MODEL
 from src.ingestion.load_documents import load_documents
 from src.ingestion.chunk_documents import chunk_documents
 
@@ -16,7 +17,7 @@ def create_embeddings(chunks, model):
 
 
 if __name__ == "__main__":
-    model = SentenceTransformer("all-MiniLM-L6-v2")
+    model = SentenceTransformer(EMBEDDING_MODEL)
 
     documents = load_documents()
     chunks = chunk_documents(documents)

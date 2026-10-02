@@ -2,7 +2,7 @@ from sentence_transformers import SentenceTransformer
 
 from src.retrieval.search import load_vector_store, search
 from src.generation.generator import generate_answer
-from src.config import DISTANCE_THRESHOLD
+from src.config import DISTANCE_THRESHOLD, EMBEDDING_MODEL
 
 
 test_questions = [
@@ -35,7 +35,7 @@ test_questions = [
 
 if __name__ == "__main__":
 
-    model = SentenceTransformer("all-MiniLM-L6-v2")
+    model = SentenceTransformer(EMBEDDING_MODEL)
 
     index, chunks = load_vector_store()
 
@@ -87,7 +87,8 @@ if __name__ == "__main__":
                 "don't have enough information",
                 "information is not available",
                 "not available in the provided documents",
-                "not enough information"
+                "not enough information",
+                "does not contain any information"
             ]
 
             if any(
